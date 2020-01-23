@@ -16,16 +16,8 @@ namespace List
             CustomList<int> list2 = new CustomList<int>();
             list1.Add(5);
             list1.Add(6);
-            list2.Add(7);
-            list2.Add(8);
 
             list1 = list1 + list2;
-
-            for(int i = 0; i < list1.Count; i++)
-            {
-                Console.WriteLine(list1[i]);
-            }
-            Console.ReadLine();
         }
     }
 }

@@ -119,10 +119,14 @@ namespace ListTest
             list.Add(6);
             list.Add(7);
             list.Add(8);
+            CustomList<int> expected = new CustomList<int>();
+            expected.Add(5);
+            expected.Add(6);
+            expected.Add(7);
             //Act
             list.Remove(8);
             //Assert
-            Assert.AreEqual(0, list[3]);
+            Assert.AreEqual(expected.ToString(), list.ToString());
         }
 
         [TestMethod]
@@ -193,7 +197,7 @@ namespace ListTest
         }
 
         [TestMethod]
-        public void AdditionOperator_AddingEmptyList_ExpectSecondStringAddedToEndOfFirst()
+        public void AdditionOperator_AddingEmptyList_ExpectOutputToMatchFirstList()
         {
             //Arrange
             CustomList<int> list1 = new CustomList<int>();
@@ -201,9 +205,9 @@ namespace ListTest
             list1.Add(5);
             list1.Add(6);
             //Act
-            list1 = list1 + list2;
+            CustomList<int> actual = list1 + list2;
             //Assert
-            Assert.AreEqual(0, list1[2]);
+            Assert.AreEqual(list1, actual);
         }
 
         [TestMethod]
@@ -218,6 +222,24 @@ namespace ListTest
             list1 = list1 + list2;
             //Assert
             Assert.AreEqual(6, list1[1]);
+        }
+
+        [TestMethod]
+        public void SubtractionOperator_SubtractingFullList_ExpectSimilarValuesToBeRemovedFromList1()
+        {
+            //Arrange
+            CustomList<int> list1 = new CustomList<int>();
+            CustomList<int> list2 = new CustomList<int>();
+            list1.Add(1);
+            list1.Add(2);
+            list1.Add(3);
+            list2.Add(1);
+            list2.Add(6);
+            list2.Add(3);
+            //Act
+            list1 = list1 - list2;
+            //Assert
+            Assert.AreEqual(2, list1[0]);
         }
 
         [TestMethod]

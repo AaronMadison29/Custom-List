@@ -41,6 +41,15 @@ namespace List
             return thisList;
         }
 
+        public static CustomList<T> operator -(CustomList<T> thisList, CustomList<T> subtraction)
+        {
+            for (int i = 0; i < subtraction.Count; i++)
+            {
+                thisList.Remove(subtraction[i]);
+            }
+            return thisList;
+        }
+
         public int Capacity
         {
             get
@@ -94,11 +103,11 @@ namespace List
             return false;
         }
 
-        public string ToString()
+        public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 stringBuilder.Append(list[i].ToString());
             }
