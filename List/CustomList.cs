@@ -12,6 +12,22 @@ namespace List
         private int capacity;
         private int count;
 
+        public int Capacity
+        {
+            get
+            {
+                return capacity;
+            }
+        }
+
+        public int Count
+        {
+            get
+            {
+                return count;
+            }
+        }
+
         public T this[int index]
         {
             get
@@ -48,22 +64,6 @@ namespace List
                 thisList.Remove(subtraction[i]);
             }
             return thisList;
-        }
-
-        public int Capacity
-        {
-            get
-            {
-                return capacity;
-            }
-        }
-
-        public int Count
-        {
-            get
-            {
-                return count;
-            }
         }
 
         public CustomList()
@@ -124,6 +124,31 @@ namespace List
             }
             return stringBuilder.ToString();
         }
+
+        public CustomList<T> Zip(CustomList<T> secondList)
+        {
+            CustomList<T> output = new CustomList<T>();
+            int outputCounter = 0;
+            int inputCounter = 0;
+
+            while(outputCounter < secondList.Count + count)
+            {
+                if(inputCounter < count)
+                {
+                    output.Add(array[inputCounter]);
+                    outputCounter++;
+                }
+                
+                if (inputCounter < secondList.Count)
+                {
+                    output.Add(secondList[inputCounter]);
+                    outputCounter++;
+                }
+                inputCounter++;
+            }
+            return output;
+        }
+
 
         private T[] Copy()
         {

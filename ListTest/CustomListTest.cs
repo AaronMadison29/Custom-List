@@ -310,5 +310,72 @@ namespace ListTest
             //Assert
             Assert.AreEqual("", actual);
         }
+
+        [TestMethod]
+        public void Zip_ZipTwoFullLists_ExpectOutputListToSwitchOffBetweenFirstAndSecondList()
+        {
+            //Arrange
+            CustomList<int> list = new CustomList<int>();
+            CustomList<int> list2 = new CustomList<int>();
+            CustomList<int> expected = new CustomList<int>();
+            list.Add(1);
+            list.Add(3);
+            list.Add(5);
+            list2.Add(2);
+            list2.Add(4);
+            list2.Add(6);
+            expected.Add(1);
+            expected.Add(2);
+            expected.Add(3);
+            expected.Add(4);
+            expected.Add(5);
+            expected.Add(6);
+            //Act
+            CustomList<int> actual = list.Zip(list2);
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Zip_ZipOneEmptyAndOneFullList_ExpectOutputListToMatchListOne()
+        {
+            //Arrange
+            CustomList<int> list = new CustomList<int>();
+            CustomList<int> list2 = new CustomList<int>();
+            CustomList<int> expected = new CustomList<int>();
+            list.Add(1);
+            list.Add(3);
+            list.Add(5);
+            expected.Add(1);
+            expected.Add(3);
+            expected.Add(5);
+            //Act
+            CustomList<int> actual = list.Zip(list2);
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Zip_ZipOneLargeListAndOneSmall_ExpectOutputListToSwitchOffBetweenFirstAndSecondList()
+        {
+            //Arrange
+            CustomList<int> list = new CustomList<int>();
+            CustomList<int> list2 = new CustomList<int>();
+            CustomList<int> expected = new CustomList<int>();
+            list.Add(1);
+            list.Add(3);
+            list.Add(5);
+            list2.Add(2);
+            list2.Add(6);
+            expected.Add(1);
+            expected.Add(2);
+            expected.Add(3);
+            expected.Add(6);
+            expected.Add(5);
+            //Act
+            CustomList<int> actual = list.Zip(list2);
+            //Assert
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
     }
 }
