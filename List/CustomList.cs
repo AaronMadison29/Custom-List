@@ -84,6 +84,7 @@ namespace List
                     if(count == 1)
                     {
                         list = new T[4];
+                        return true;
                     }
                     list = CopyExcept(i);
                     count--;
@@ -91,6 +92,17 @@ namespace List
                 }
             }
             return false;
+        }
+
+        public string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for(int i = 0; i < count; i++)
+            {
+                stringBuilder.Append(list[i].ToString());
+            }
+            return stringBuilder.ToString();
         }
 
         private T[] Copy()

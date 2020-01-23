@@ -231,5 +231,29 @@ namespace ListTest
             //Act
             int actual = list1[-1];
         }
+
+        [TestMethod]
+        public void ToString_ConvertingFullList_ExpectListToBePrintedAsString()
+        {
+            //Arrange
+            CustomList<int> list = new CustomList<int>();
+            list.Add(5);
+            list.Add(6);
+            //Act
+            string actual = list.ToString();
+            //Assert
+            Assert.AreEqual("56", actual);
+        }
+
+        [TestMethod]
+        public void ToString_ConvertingEmptyList_ExpectListToBePrintedAsString()
+        {
+            //Arrange
+            CustomList<int> list = new CustomList<int>();
+            //Act
+            string actual = list.ToString();
+            //Assert
+            Assert.AreEqual("", actual);
+        }
     }
 }
