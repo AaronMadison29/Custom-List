@@ -16,7 +16,6 @@ namespace List
             CustomList<int> list2 = new CustomList<int>();
             list1.Add(5);
             list1.Add(6);
-
             list1 = list1 + list2;
         }
     }

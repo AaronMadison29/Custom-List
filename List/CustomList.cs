@@ -8,7 +8,7 @@ namespace List
 {
     public class CustomList<T>
     {
-        T[] list;
+        T[] array;
         private int capacity;
         private int count;
 
@@ -18,17 +18,17 @@ namespace List
             {
                 if(index > count - 1 || index < 0)
                 {
-                    throw new IndexOutOfRangeException();
+                    throw new ArgumentOutOfRangeException();
                 }
-                return list[index];
+                return array[index];
             }
             set
             {
                 if (index > count - 1 || index < 0)
                 {
-                    throw new IndexOutOfRangeException();
+                    throw new ArgumentOutOfRangeException();
                 }
-                list[index] = value;
+                array[index] = value;
             }
         }
 
@@ -68,7 +68,7 @@ namespace List
 
         public CustomList()
         {
-            list = new T[4];
+            array = new T[4];
             capacity = 4;
             count = 0;
         }
@@ -78,29 +78,40 @@ namespace List
             count++;
             if(count > capacity)
             {
-                list = Copy();
+                array = Copy();
             }
 
-            list[count - 1] = value;
+            array[count - 1] = value;
         }
 
         public bool Remove(T value)
         {
+            bool isRemoved = false;
+
             for(int i = 0; i < count; i++)
             {
-                if (list[i].Equals(value))
+                if (array[i].Equals(value))
                 {
                     if(count == 1)
                     {
-                        list = new T[4];
-                        return true;
+                        array = new T[4];
+                        isRemoved = true;
+                        break;
                     }
-                    list = CopyExcept(i);
-                    count--;
-                    return true;
+                    array = CopyExcept(i);
+                    isRemoved = true;
+                    break;
                 }
             }
-            return false;
+            if(isRemoved)
+            {
+                count--;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public override string ToString()
@@ -109,7 +120,7 @@ namespace List
 
             for (int i = 0; i < count; i++)
             {
-                stringBuilder.Append(list[i].ToString());
+                stringBuilder.Append(array[i].ToString());
             }
             return stringBuilder.ToString();
         }
@@ -122,7 +133,7 @@ namespace List
 
             for(int i = 0; i < count - 1; i++)
             {
-                temporary[i] = list[i];
+                temporary[i] = array[i];
             }
 
            return temporary;
@@ -143,7 +154,7 @@ namespace List
                 {
                     i++;
                 }
-                temporary[counter] = list[i];
+                temporary[counter] = array[i];
                 counter++;
             }
             return temporary;

@@ -59,6 +59,7 @@ namespace ListTest
         //Remove
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void Remove_RemovesAValue_ExpectFirstOccurenceRemoved()
         {
             //Arrange
@@ -67,7 +68,7 @@ namespace ListTest
             //Act
             list.Remove(5);
             //Assert
-            Assert.AreEqual(0, list[0]);
+            int actual = list[0];
         }
         [TestMethod]
         public void Remove_RemovesAValue_ExpectCountDecreasedByOne()
@@ -243,7 +244,39 @@ namespace ListTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void SubtractionOperator_SubtractingEmptyList_ExpectsOutputListToBeTheSameAsFirstList()
+        {
+            //Arrange
+            CustomList<int> list1 = new CustomList<int>();
+            CustomList<int> list2 = new CustomList<int>();
+            list1.Add(1);
+            list1.Add(2);
+            list1.Add(3);
+            CustomList<int> expected = list1;
+            //Act
+            list1 = list1 - list2;
+            //Assert
+            Assert.AreEqual(expected, list1);
+        }
+
+        [TestMethod]
+        public void SubtractionOperator_SubtractingFromEmptyList_ExpectsOutputListToBeTheSameAsFirstList()
+        {
+            //Arrange
+            CustomList<int> list1 = new CustomList<int>();
+            CustomList<int> list2 = new CustomList<int>();
+            list2.Add(1);
+            list2.Add(2);
+            list2.Add(3);
+            CustomList<int> expected = list1;
+            //Act
+            list1 = list1 - list2;
+            //Assert
+            Assert.AreEqual(expected, list1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void Indexer_UnaccessibleIndexInput_ExpectThrowIndexOutOfRangeException()
         {
             //Arrange
