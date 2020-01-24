@@ -10,24 +10,22 @@ namespace List
     {
         static void Main(string[] args)
         {
-            //Arrange
             CustomList<int> list = new CustomList<int>();
+            CustomList<int> list2 = new CustomList<int>();
+            CustomList<int> list3;
+
             list.Add(6);
             list.Add(8);
             list.Add(9);
-            list.Add(8);
-            list.Add(5);
-            list.Add(4);
-            list.Add(3);
-            list.Add(2);
-            list.Add(0);
-            list.Add(1);
-            list.Add(10);
-            list.Add(11);
-            list.Add(50);
-            list.Sort();
+            list.Add(7);
+            list2.Add(5);
+            list2.Add(8);
+            list2.Add(9);
+            list2.Add(3);
 
-            Console.WriteLine(list.ToString());
+            list3 = list - list2;
+
+            Console.WriteLine(list3.ToString());
             Console.ReadLine();
         }
     }

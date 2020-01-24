@@ -29,6 +29,13 @@ namespace List
             }
         }
 
+        public CustomList()
+        {
+            array = new T[4];
+            capacity = 4;
+            count = 0;
+        }
+
         public T this[int index]
         {
             get
@@ -49,10 +56,10 @@ namespace List
             }
         }
 
-        public static CustomList<T> operator +(CustomList<T> thisList, CustomList<T> addition)
+        public static CustomList<T> operator +(CustomList<T> baseList, CustomList<T> addition)
         {
             CustomList<T> temporary = new CustomList<T>();
-            foreach (T value in thisList)
+            foreach (T value in baseList)
             {
                 temporary.Add(value);
             }
@@ -63,21 +70,14 @@ namespace List
             return temporary;
         }
 
-        public static CustomList<T> operator -(CustomList<T> thisList, CustomList<T> subtraction)
+        public static CustomList<T> operator -(CustomList<T> baseList, CustomList<T> subtraction)
         {
-            CustomList<T> temporary = thisList;
+            CustomList<T> temporary = baseList;
             foreach(T value in subtraction)
             {
                 temporary.Remove(value);
             }
             return temporary;
-        }
-
-        public CustomList()
-        {
-            array = new T[4];
-            capacity = 4;
-            count = 0;
         }
 
         public void Add(T value)
