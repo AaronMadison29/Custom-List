@@ -333,7 +333,7 @@ namespace ListTest
             //Act
             CustomList<int> actual = list.Zip(list2);
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.ToString(), actual.ToString());
         }
 
         [TestMethod]
@@ -352,7 +352,7 @@ namespace ListTest
             //Act
             CustomList<int> actual = list.Zip(list2);
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.ToString(), actual.ToString());
         }
 
         [TestMethod]
