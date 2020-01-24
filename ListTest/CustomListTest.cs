@@ -208,7 +208,7 @@ namespace ListTest
             //Act
             CustomList<int> actual = list1 + list2;
             //Assert
-            Assert.AreEqual(list1, actual);
+            Assert.AreEqual(list1.ToString(), actual.ToString());
         }
 
         [TestMethod]
@@ -256,7 +256,7 @@ namespace ListTest
             //Act
             list1 = list1 - list2;
             //Assert
-            Assert.AreEqual(expected, list1);
+            Assert.AreEqual(expected.ToString(), list1.ToString());
         }
 
         [TestMethod]
@@ -272,7 +272,7 @@ namespace ListTest
             //Act
             list1 = list1 - list2;
             //Assert
-            Assert.AreEqual(expected, list1);
+            Assert.AreEqual(expected.ToString(), list1.ToString());
         }
 
         [TestMethod]

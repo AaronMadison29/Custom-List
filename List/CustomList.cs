@@ -51,20 +51,26 @@ namespace List
 
         public static CustomList<T> operator +(CustomList<T> thisList, CustomList<T> addition)
         {
-            for (int i = 0; i < addition.Count; i++)
+            CustomList<T> temporary = new CustomList<T>();
+            foreach (T value in thisList)
             {
-                thisList.Add(addition[i]);
+                temporary.Add(value);
             }
-            return thisList;
+            foreach (T value in addition)
+            {
+                temporary.Add(value);
+            }
+            return temporary;
         }
 
         public static CustomList<T> operator -(CustomList<T> thisList, CustomList<T> subtraction)
         {
-            for (int i = 0; i < subtraction.Count; i++)
+            CustomList<T> temporary = thisList;
+            foreach(T value in subtraction)
             {
-                thisList.Remove(subtraction[i]);
+                temporary.Remove(value);
             }
-            return thisList;
+            return temporary;
         }
 
         public CustomList()
@@ -220,65 +226,29 @@ namespace List
         {
             if(x is int)
             {
-                if (Convert.ToInt32(x) > Convert.ToInt32(y))
-                {
-                    return 1;
-                }
-                else if (Convert.ToInt32(x) < Convert.ToInt32(y))
-                {
-                    return -1;
-                }
-                else
-                {
-                    return 0;
-                }
+                return Convert.ToInt32(x).CompareTo(Convert.ToInt32(y));
             }
             else if(x is string)
             {
-                if (x.ToString().CompareTo(y.ToString()) == 1)
-                {
-                    return 1;
-                }
-                else if (x.ToString().CompareTo(y.ToString()) == -1)
-                {
-                    return -1;
-                }
-                else
-                {
-                    return 0;
-                }
+                return x.ToString().CompareTo(y.ToString());
             }
             else if(x is bool)
             {
-                if (Convert.ToBoolean(x).CompareTo(Convert.ToBoolean(y)) == 1)
-                {
-                    return 1;
-                }
-                else if (Convert.ToBoolean(x).CompareTo(Convert.ToBoolean(y)) == -1)
-                {
-                    return -1;
-                }
-                else
-                {
-                    return 0;
-                }
+                return Convert.ToBoolean(x).CompareTo(Convert.ToBoolean(y));
             }
             else if(x is char)
             {
-                if (Convert.ToChar(x).CompareTo(Convert.ToChar(y)) == 1)
-                {
-                    return 1;
-                }
-                else if (Convert.ToChar(x).CompareTo(Convert.ToChar(y)) == -1)
-                {
-                    return -1;
-                }
-                else
-                {
-                    return 0;
-                }
+                return Convert.ToChar(x).CompareTo(Convert.ToChar(y));
             }
             return 0;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return array[i];
+            }
         }
     }
 }
