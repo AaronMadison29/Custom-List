@@ -159,7 +159,7 @@ namespace List
 
             bool swap = false;
 
-            for (int i = 0; i < array.Length - 1; i++)
+            for (int i = 0; i < count - 1; i++)
             {
                 if (Compare(array[i], array[i+1]) == 1)
                 {
@@ -170,7 +170,6 @@ namespace List
 
                 }
             }
-
 
             if (swap)
             {
@@ -216,9 +215,6 @@ namespace List
             }
             return temporary;
         }
-
-
-
 
         public int Compare(T x, T y)
         {

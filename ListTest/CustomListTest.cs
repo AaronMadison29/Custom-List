@@ -384,14 +384,14 @@ namespace ListTest
             //Arrange
             CustomList<string> list = new CustomList<string>();
             CustomList<string> expected = new CustomList<string>();
-            list.Add("1");
-            list.Add("6");
-            list.Add("2");
-            list.Add("9");
-            expected.Add("1");
-            expected.Add("2");
-            expected.Add("6");
-            expected.Add("9");
+            list.Add("a");
+            list.Add("t");
+            list.Add("b");
+            list.Add("z");
+            expected.Add("a");
+            expected.Add("b");
+            expected.Add("t");
+            expected.Add("z");
             //Act
             list.Sort();
             //Assert
