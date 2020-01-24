@@ -470,5 +470,46 @@ namespace ListTest
             //Assert
             Assert.AreEqual(-1, actual);
         }
+
+        [TestMethod]
+        public void IEnumerable_LoopOverTheList_ExpectedIterationOfTheList()
+        {
+            //Arrange
+            CustomList<char> list = new CustomList<char>();
+            list.Add('1');
+            list.Add('2');
+            list.Add('3');
+            list.Add('4');
+            list.Add('5');
+            string output = "";
+            //Act
+            foreach(char num in list)
+            {
+                output += num;
+            }
+            //Assert
+            Assert.AreEqual("12345", output);
+        }
+
+        [TestMethod]
+        public void IEnumerable_AddingOneToACounterOverList_ExpectedCounterEqualsCount()
+        {
+            //Arrange
+            CustomList<char> list = new CustomList<char>();
+            list.Add('1');
+            list.Add('2');
+            list.Add('3');
+            list.Add('4');
+            list.Add('5');
+            int actualCount = 0;
+            int expected = list.Count;
+            //Act
+            foreach (char num in list)
+            {
+                actualCount++;
+            }
+            //Assert
+            Assert.AreEqual(expected, actualCount);
+        }
     }
 }
