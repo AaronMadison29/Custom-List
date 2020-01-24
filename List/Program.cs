@@ -11,7 +11,7 @@ namespace List
         static void Main(string[] args)
         {
             //Arrange
-            CustomList<int> list = new CustomList<int>();
+            CustomList<int> sdfg = new CustomList<int>();
             CustomList<int> list1 = new CustomList<int>();
             CustomList<int> list2 = new CustomList<int>();
             list1.Add(5);

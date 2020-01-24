@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace List
 {
-    public class CustomList<T>
+    public class CustomList<T>: IComparer<T>
     {
         T[] array;
         private int capacity;
@@ -32,7 +33,7 @@ namespace List
         {
             get
             {
-                if(index > count - 1 || index < 0)
+                if (index > count - 1 || index < 0)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -76,7 +77,7 @@ namespace List
         public void Add(T value)
         {
             count++;
-            if(count > capacity)
+            if (count > capacity)
             {
                 array = Copy();
             }
@@ -88,11 +89,11 @@ namespace List
         {
             bool isRemoved = false;
 
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 if (array[i].Equals(value))
                 {
-                    if(count == 1)
+                    if (count == 1)
                     {
                         array = new T[4];
                         isRemoved = true;
@@ -103,7 +104,7 @@ namespace List
                     break;
                 }
             }
-            if(isRemoved)
+            if (isRemoved)
             {
                 count--;
                 return true;
@@ -131,14 +132,14 @@ namespace List
             int outputCounter = 0;
             int inputCounter = 0;
 
-            while(outputCounter < secondList.Count + count)
+            while (outputCounter < secondList.Count + count)
             {
-                if(inputCounter < count)
+                if (inputCounter < count)
                 {
                     output.Add(array[inputCounter]);
                     outputCounter++;
                 }
-                
+
                 if (inputCounter < secondList.Count)
                 {
                     output.Add(secondList[inputCounter]);
@@ -149,6 +150,37 @@ namespace List
             return output;
         }
 
+        public T[] Sort()
+        {
+            if(count == 1)
+            {
+                return array;
+            }
+
+            bool swap = false;
+
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                if (Compare(array[i], array[i+1]) == 1)
+                {
+                    T temp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
+                    swap = true;
+
+                }
+            }
+
+
+            if (swap)
+            {
+                return Sort();
+            }
+            else
+            {
+                return array;
+            }
+        }
 
         private T[] Copy()
         {
@@ -183,6 +215,74 @@ namespace List
                 counter++;
             }
             return temporary;
+        }
+
+
+
+
+        public int Compare(T x, T y)
+        {
+            if(x is int)
+            {
+                if (Convert.ToInt32(x) > Convert.ToInt32(y))
+                {
+                    return 1;
+                }
+                else if (Convert.ToInt32(x) < Convert.ToInt32(y))
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else if(x is string)
+            {
+                if (x.ToString().CompareTo(y.ToString()) == 1)
+                {
+                    return 1;
+                }
+                else if (x.ToString().CompareTo(y.ToString()) == -1)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else if(x is bool)
+            {
+                if (Convert.ToBoolean(x).CompareTo(Convert.ToBoolean(y)) == 1)
+                {
+                    return 1;
+                }
+                else if (Convert.ToBoolean(x).CompareTo(Convert.ToBoolean(y)) == -1)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else if(x is char)
+            {
+                if (Convert.ToChar(x).CompareTo(Convert.ToChar(y)) == 1)
+                {
+                    return 1;
+                }
+                else if (Convert.ToChar(x).CompareTo(Convert.ToChar(y)) == -1)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            return 0;
         }
     }
 }

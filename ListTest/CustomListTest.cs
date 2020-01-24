@@ -382,20 +382,20 @@ namespace ListTest
         public void Sort_BubbleSortTwoFullArrays_ExpectArrayToBeSortedInAscendingOrder()
         {
             //Arrange
-            CustomList<int> list = new CustomList<int>();
-            CustomList<int> expected = new CustomList<int>();
-            list.Add(1);
-            list.Add(6);
-            list.Add(2);
-            list.Add(9);
-            expected.Add(1);
-            expected.Add(2);
-            expected.Add(6);
-            expected.Add(9);
+            CustomList<string> list = new CustomList<string>();
+            CustomList<string> expected = new CustomList<string>();
+            list.Add("1");
+            list.Add("6");
+            list.Add("2");
+            list.Add("9");
+            expected.Add("1");
+            expected.Add("2");
+            expected.Add("6");
+            expected.Add("9");
             //Act
-            CustomList<int> actual = list.Sort();
+            list.Sort();
             //Assert
-            Assert.AreEqual(expected.ToString(), actual.ToString());
+            Assert.AreEqual(expected.ToString(), list.ToString());
         }
 
         [TestMethod]
@@ -407,9 +407,9 @@ namespace ListTest
             list.Add(6);
             expected.Add(6);
             //Act
-            CustomList<int> actual = list.Sort();
+            list.Sort();
             //Assert
-            Assert.AreEqual(expected.ToString(), actual.ToString());
+            Assert.AreEqual(expected.ToString(), list.ToString());
         }
 
         [TestMethod]
@@ -427,9 +427,9 @@ namespace ListTest
             expected.Add(3);
             expected.Add(4);
             //Act
-            CustomList<int> actual = list.Sort();
+            list.Sort();
             //Assert
-            Assert.AreEqual(expected.ToString(), actual.ToString());
+            Assert.AreEqual(expected.ToString(), list.ToString());
         }
     }
 }
