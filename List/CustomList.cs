@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace List
 {
-    public class CustomList<T>: IComparer<T>
+    public class CustomList<T> : IEnumerable where T : IComparable
     {
         T[] array;
         private int capacity;
@@ -132,17 +132,17 @@ namespace List
             return stringBuilder.ToString();
         }
 
-        public CustomList<T> Zip(CustomList<T> secondList)
+        public static CustomList<T> Zip(CustomList<T> firstList, CustomList<T> secondList)
         {
             CustomList<T> output = new CustomList<T>();
             int outputCounter = 0;
             int inputCounter = 0;
 
-            while (outputCounter < secondList.Count + count)
+            while (outputCounter < secondList.Count + firstList.Count)
             {
-                if (inputCounter < count)
+                if (inputCounter < firstList.Count)
                 {
-                    output.Add(array[inputCounter]);
+                    output.Add(firstList.array[inputCounter]);
                     outputCounter++;
                 }
 
@@ -167,7 +167,7 @@ namespace List
 
             for (int i = 0; i < count - 1; i++)
             {
-                if (Compare(array[i], array[i+1]) == 1)
+                if (array[i].CompareTo(array[i+1]) == 1)
                 {
                     T temp = array[i];
                     array[i] = array[i + 1];
@@ -220,27 +220,6 @@ namespace List
                 counter++;
             }
             return temporary;
-        }
-
-        public int Compare(T x, T y)
-        {
-            if(x is int)
-            {
-                return Convert.ToInt32(x).CompareTo(Convert.ToInt32(y));
-            }
-            else if(x is string)
-            {
-                return x.ToString().CompareTo(y.ToString());
-            }
-            else if(x is bool)
-            {
-                return Convert.ToBoolean(x).CompareTo(Convert.ToBoolean(y));
-            }
-            else if(x is char)
-            {
-                return Convert.ToChar(x).CompareTo(Convert.ToChar(y));
-            }
-            return 0;
         }
 
         public IEnumerator GetEnumerator()

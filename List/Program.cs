@@ -14,7 +14,7 @@ namespace List
             CustomList<int> list2 = new CustomList<int>();
             CustomList<int> list3;
 
-            list.Add(6);
+            list.Add(5);
             list.Add(8);
             list.Add(9);
             list.Add(7);
@@ -25,7 +25,16 @@ namespace List
 
             list3 = list - list2;
 
-            Console.WriteLine(list3.ToString());
+            CustomList<string> list1 = new CustomList<string>()
+            {
+                "carrot",
+                "fox",
+                "explorer"
+            };
+
+            string x = list1[0];
+
+            Console.WriteLine(x);
             Console.ReadLine();
         }
     }

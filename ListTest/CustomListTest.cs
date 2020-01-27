@@ -351,7 +351,7 @@ namespace ListTest
             expected.Add(5);
             expected.Add(6);
             //Act
-            CustomList<int> actual = list.Zip(list2);
+            CustomList<int> actual = CustomList<int>.Zip(list, list2);
             //Assert
             Assert.AreEqual(expected.ToString(), actual.ToString());
         }
@@ -370,7 +370,7 @@ namespace ListTest
             expected.Add(3);
             expected.Add(5);
             //Act
-            CustomList<int> actual = list.Zip(list2);
+            CustomList<int> actual = CustomList<int>.Zip(list, list2);
             //Assert
             Assert.AreEqual(expected.ToString(), actual.ToString());
         }
@@ -393,7 +393,7 @@ namespace ListTest
             expected.Add(6);
             expected.Add(5);
             //Act
-            CustomList<int> actual = list.Zip(list2);
+            CustomList<int> actual = CustomList<int>.Zip(list, list2);
             //Assert
             Assert.AreEqual(expected.ToString(), actual.ToString());
         }
@@ -450,45 +450,6 @@ namespace ListTest
             list.Sort();
             //Assert
             Assert.AreEqual(expected.ToString(), list.ToString());
-        }
-
-        [TestMethod]
-        public void Compare_CompareTwoInts_ExpectedReturn1()
-        {
-            //Arrange
-            CustomList<int> list = new CustomList<int>();
-            int two = 2;
-            int one = 1;
-            //Act
-            int actual = list.Compare(two, one);
-            //Assert
-            Assert.AreEqual(1, actual);
-        }
-
-        [TestMethod]
-        public void Compare_CompareTwoStrings_ExpectedReturn0()
-        {
-            //Arrange
-            CustomList<string> list = new CustomList<string>();
-            string one = "1";
-            string two = "1";
-            //Act
-            int actual = list.Compare(one, two);
-            //Assert
-            Assert.AreEqual(0, actual);
-        }
-
-        [TestMethod]
-        public void Compare_CompareTwoChars_ExpectedReturnNegative1()
-        {
-            //Arrange
-            CustomList<char> list = new CustomList<char>();
-            char one = '1';
-            char two = '2';
-            //Act
-            int actual = list.Compare(one, two);
-            //Assert
-            Assert.AreEqual(-1, actual);
         }
 
         [TestMethod]
