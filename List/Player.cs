@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace List
 {
-    class Program
+    class Player
     {
-        static void Main(string[] args)
-        {
-
-        }
     }
 }

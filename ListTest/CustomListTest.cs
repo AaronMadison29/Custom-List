@@ -399,7 +399,7 @@ namespace ListTest
         }
 
         [TestMethod]
-        public void Sort_BubbleSortTwoFullArrays_ExpectArrayToBeSortedInAscendingOrder()
+        public void Sort_BubbleSort_ExpectArrayToBeSortedInAscendingOrder()
         {
             //Arrange
             CustomList<string> list = new CustomList<string>();
